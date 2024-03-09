@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
-import React from 'react'
+import React,{useId} from 'react'
 
 function InputBox({
     label,
@@ -14,14 +14,16 @@ function InputBox({
     className = "",
 }) {
    
+    const amountId = useId(); //   {don't use call useId to generate keys in list} 
 
     return (
         <div className={`bg-white p-3 rounded-lg text-sm flex ${className}`}>
             <div className="w-1/2">
-                <label  className="text-black/40 mb-2 inline-block">
+                <label  htmlFor={amountId} className="text-black/40 mb-2 inline-block">
                     {label}
                 </label>
                 <input
+                id={amountId}
                     disabled = {amountDisable}
                     value={amount}
                     onChange={(e)=> onAmountChange && onAmountChange(Number(e.target.value))}
